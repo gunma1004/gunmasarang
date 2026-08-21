@@ -13,11 +13,6 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     type: 'website',
   },
-  verification: {
-    other: {
-      'naver-site-verification': '56d1368c0af42fa874d7c1072687e23ade1c12b7',
-    },
-  },
 };
 
 export default function RootLayout({
@@ -27,6 +22,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <meta
+          name="naver-site-verification"
+          content="56d1368c0af42fa874d7c1072687e23ade1c12b7"
+        />
+      </head>
       <body>
         <NavigationHeader />
         {children}
