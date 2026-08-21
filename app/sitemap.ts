@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // 🌐 적용할 새 도메인 주수
-  const baseUrl = 'https://gunmasarang.store';
+  const baseUrl = 'https://gunmasarang-massage4.vercel.app';
 
   // 1. 메인 대표 홈 페이지
   const mainRoute: MetadataRoute.Sitemap = [

@@ -158,7 +158,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     openGraph: {
       title: finalTitle,
       description: finalDescription,
-      url: `https://gunmasarang.store/${region}/${encodeURIComponent(districtName)}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
+      url: `https://gunmasarang-massage4.vercel.app/${region}/${encodeURIComponent(districtName)}${dongName ? `?dong=${encodeURIComponent(dongName)}` : ""}`,
       siteName: "건마사랑",
       locale: "ko_KR",
       type: "website",
@@ -227,7 +227,7 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
     "@type": "LocalBusiness",
     "name": `${fullTitle} 출장마사지 & 홈케어 안내 - 건마사랑`,
     "description": `${fullTitle} 지역 출장마사지, 방문 바디케어 및 힐링 테라피 제휴업체 정보 제공`,
-    "url": `https://gunmasarang.store/${region}/${encodeURIComponent(districtName)}`,
+    "url": `https://gunmasarang-massage4.vercel.app/${region}/${encodeURIComponent(districtName)}`,
     "telephone": "0507-1280-3344",
     "address": {
       "@type": "PostalAddress",
