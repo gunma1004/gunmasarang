@@ -13,6 +13,12 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     type: 'website',
   },
+  // 아래 verification 부분을 새로 추가
+  verification: {
+    other: {
+      'naver-site-verification': '56d1368c0af42fa874d7c1072687e23ade1c12b7',
+    },
+  },
 };
 
 export default function RootLayout({
