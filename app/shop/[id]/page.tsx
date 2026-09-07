@@ -1,6 +1,6 @@
 "use client";
 
-import { use } from "react";
+import { use, useState, useEffect } from "react";
 import Link from "next/link";
 
 interface PageProps {
@@ -80,17 +80,17 @@ const shopData: Record<string, {
     features: ["젊고 세련된 감성 테라피", "100% 후불 결제", "24시간 항시 대기"]
   },
   "5": {
-    name: "👑 20대그녀의온도홈타이",
-    phone: "0507-1280-3292",
+    name: "👑 한국골든테라피",
+    phone: "0507-1280-3360",
     location: "서울 · 경기 · 인천 전지역 실시간 방문",
     badge: "인기도 TOP 5",
     image: "/shop5.jpg",
     desc: "선입금 없는 100% 후불제 안심 이용! 수도권 전지역 평균 25분 내 칼같이 도착합니다.",
     courses: [
-      { name: "온도 타이 케어", time: "60분", price: "60,000원", desc: "지친 피로를 깔끔하게 해소하는 기본 건식 케어" },
-      { name: "온도 스페셜 아로마", time: "60분", price: "70,000원", desc: "향기로운 아로마 향과 함께하는 부드러운 릴렉싱" },
-      { name: "온도 스페셜 코스", time: "90분", price: "120,000원", desc: "향기로운 아로마 향과 함께하는 부드러운 릴렉싱" },
-      { name: "👑 한국 관리사 코스", time: "60분", price: "140,000원", desc: "전신 집중 케어와 함께하는 완벽한 피로 회복" }
+      { name: "한국인골든 스웨디시코스", time: "60분", price: "140,000원", desc: "지친 피로를 깔끔하게 해소하는 기본 건식 케어" },
+      { name: "한국인 골든 스웨디시 코스", time: "90분", price: "190,000원", desc: "향기로운 아로마 향과 함께하는 부드러운 릴렉싱" },
+      { name: "20대 혼혈 프리미엄 코스", time: "90분", price: "130,000원", desc: "향기로운 아로마 향과 함께하는 부드러운 릴렉싱" },
+      { name: " 20대 혼혈 프리미엄 코스", time: "120분", price: "150,000원", desc: "전신 집중 케어와 함께하는 완벽한 피로 회복" }
     ],
     features: ["100% 후불제", "수도권 전지역 빠른 도착", "고객 만족도 최상"]
   }
@@ -98,8 +98,19 @@ const shopData: Record<string, {
 
 export default function ShopDetailPage({ params }: PageProps) {
   const resolvedParams = use(params);
-  const shopId = resolvedParams.id;
-  const shop = shopData[shopId] || shopData["1"];
+  const requestedId = resolvedParams.id;
+
+  // 기본값 설정 (서버 렌더링 시 하이드레이션 에러 방지용)
+  const [currentShop, setCurrentShop] = useState(shopData[requestedId] || shopData["1"]);
+
+  useEffect(() => {
+    // 페이지가 새로고침되거나 들어올 때마다 1~5번 샵 중 랜덤으로 선택
+    const shopKeys = Object.keys(shopData);
+    const randomKey = shopKeys[Math.floor(Math.random() * shopKeys.length)];
+    setCurrentShop(shopData[randomKey]);
+  }, []);
+
+  const shop = currentShop;
 
   return (
     <div className="bg-[#050505] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-black pb-24">
@@ -117,7 +128,7 @@ export default function ShopDetailPage({ params }: PageProps) {
               <span className="text-xl font-black tracking-wider bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-500 bg-clip-text text-transparent">
                 건마사랑
               </span>
-              <span className="text-[10px] text-gray-400 tracking-tighter">PREMIUM SHOP DETAIL</span>
+              <span className="text-[10px] text-gray-400 tracking-tighter">PREMIUM LANDING SHOP</span>
             </div>
           </Link>
           
