@@ -111,7 +111,7 @@ const initialLocalShops = [
     id: 2,
     name: "✨ 오늘밤테라피",
     desc: "품격 있는 힐링을 선사하는 최고급 오일 프라이빗 방문 테라피 서비스",
-    phone: "0507-1280-3190",
+    phone: "0507-1280-3223",
     price: "60,000원부터~",
     image: "/shop2.jpg"
   },
@@ -127,7 +127,7 @@ const initialLocalShops = [
     id: 4,
     name: "🌟퀸즈홈테라피",
     desc: "전문 힐러들의 맞춤형 VIP 피로회복 특화 프로그램 진행 중",
-    phone: "0507-1280-3296",
+    phone: "0507-1280-3334",
     price: "60,000원부터~",
     image: "/shop4.jpg"
   },

@@ -21,7 +21,7 @@ const shopData: Record<string, {
 }> = {
   "1": {
     name: "🔥 한국미인홈케어",
-    phone: "0507-1280-3201",
+    phone: "0507-1280-3303",
     location: "서울 · 경기 · 인천 전지역 25분 내 신속 방문",
     badge: "실시간 만족도 1위",
     image: "/shop1.jpg",
@@ -36,7 +36,7 @@ const shopData: Record<string, {
   },
   "2": {
     name: "✨ 오늘밤테라피",
-    phone: "0507-1280-3199",
+    phone: "0507-1280-3223",
     location: "서울 · 경기 · 인천 전지역 방문",
     badge: "재방문율 최우수",
     image: "/shop2.jpg",
@@ -52,7 +52,7 @@ const shopData: Record<string, {
   },
   "3": {
     name: "💎 주주테라피",
-    phone: "0507-1280-3197",
+    phone: "0507-1280-3193",
     location: "서울 · 경기 · 인천 전지역 신속 도착",
     badge: "24시 상시 할인",
     image: "/shop3.jpg",
@@ -66,7 +66,7 @@ const shopData: Record<string, {
   },
   "4": {
     name: "🌟퀸즈홈테라피",
-    phone: "0507-1280-3222",
+    phone: "0507-1280-3334",
     location: "서울 · 경기 · 인천 전지역 방문",
     badge: "젊은 감성 베테랑",
     image: "/shop4.jpg",
