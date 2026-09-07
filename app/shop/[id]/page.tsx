@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
+import { use } from "react";
 import Link from "next/link";
 
 interface PageProps {
@@ -20,8 +20,8 @@ const shopData: Record<string, {
   features: string[];
 }> = {
   "1": {
-    name: "🔥 한국미녀홈타이",
-    phone: "0507-1280-3299",
+    name: "🔥 한국미인홈케어",
+    phone: "0507-1280-3201",
     location: "서울 · 경기 · 인천 전지역 25분 내 신속 방문",
     badge: "실시간 만족도 1위",
     image: "/shop1.jpg",
@@ -35,8 +35,8 @@ const shopData: Record<string, {
     features: ["100% 후불제 안심결제", "24시간 365일 연중무휴", "수도권 전지역 25분 칼도착", "위생 및 방역 관리 철저"]
   },
   "2": {
-    name: "✨ 너무이쁜홈타이",
-    phone: "0507-1280-3190",
+    name: "✨ 오늘밤테라피",
+    phone: "0507-1280-3199",
     location: "서울 · 경기 · 인천 전지역 방문",
     badge: "재방문율 최우수",
     image: "/shop2.jpg",
@@ -51,8 +51,8 @@ const shopData: Record<string, {
     features: ["100% 후불제 안심결제", "친절 마인드 힐러 상시 대기", "카드/현금/계좌이체 가능"]
   },
   "3": {
-    name: "💎 예쁜걸홈타이",
-    phone: "0507-1280-3185",
+    name: "💎 주주테라피",
+    phone: "0507-1280-3197",
     location: "서울 · 경기 · 인천 전지역 신속 도착",
     badge: "24시 상시 할인",
     image: "/shop3.jpg",
@@ -65,7 +65,7 @@ const shopData: Record<string, {
     features: ["선입금 0원 100% 후불제", "평균 25분 방문 보장", "개인정보 완벽 보호"]
   },
   "4": {
-    name: "🌟 20대프리미엄홈케어",
+    name: "🌟퀸즈홈테라피",
     phone: "0507-1280-3222",
     location: "서울 · 경기 · 인천 전지역 방문",
     badge: "젊은 감성 베테랑",
@@ -87,10 +87,11 @@ const shopData: Record<string, {
     image: "/shop5.jpg",
     desc: "선입금 없는 100% 후불제 안심 이용! 수도권 전지역 평균 25분 내 칼같이 도착합니다.",
     courses: [
-      { name: "한국인골든 스웨디시코스", time: "60분", price: "140,000원", desc: "지친 피로를 깔끔하게 해소하는 기본 건식 케어" },
-      { name: "한국인 골든 스웨디시 코스", time: "90분", price: "190,000원", desc: "향기로운 아로마 향과 함께하는 부드러운 릴렉싱" },
+      { name: "20대 혼혈 프리미엄 코스", time: "60분", price: "110,000원", desc: "지친 피로를 깔끔하게 해소하는 기본 건식 케어" },
       { name: "20대 혼혈 프리미엄 코스", time: "90분", price: "130,000원", desc: "향기로운 아로마 향과 함께하는 부드러운 릴렉싱" },
-      { name: " 20대 혼혈 프리미엄 코스", time: "120분", price: "150,000원", desc: "전신 집중 케어와 함께하는 완벽한 피로 회복" }
+      { name: "20대 혼혈 프리미엄 코스", time: "120분", price: "150,000원", desc: "향기로운 아로마 향과 함께하는 부드러운 릴렉싱" },
+      { name: "한국인 골든 스웨디시 코스", time: "60분", price: "140,000원", desc: "향기로운 아로마 향과 함께하는 부드러운 릴렉싱" },
+      { name: "한국인 골든 스웨디시 코스", time: "90분", price: "190,000원", desc: "전신 집중 케어와 함께하는 완벽한 피로 회복" }
     ],
     features: ["100% 후불제", "수도권 전지역 빠른 도착", "고객 만족도 최상"]
   }
@@ -98,19 +99,24 @@ const shopData: Record<string, {
 
 export default function ShopDetailPage({ params }: PageProps) {
   const resolvedParams = use(params);
-  const requestedId = resolvedParams.id;
+  const shopId = resolvedParams.id;
+  
+  // 선택한 ID에 맞는 샵이 없거나 잘못된 경우 안내 문구를 보여주도록 처리
+  const shop = shopData[shopId];
 
-  // 기본값 설정 (서버 렌더링 시 하이드레이션 에러 방지용)
-  const [currentShop, setCurrentShop] = useState(shopData[requestedId] || shopData["1"]);
-
-  useEffect(() => {
-    // 페이지가 새로고침되거나 들어올 때마다 1~5번 샵 중 랜덤으로 선택
-    const shopKeys = Object.keys(shopData);
-    const randomKey = shopKeys[Math.floor(Math.random() * shopKeys.length)];
-    setCurrentShop(shopData[randomKey]);
-  }, []);
-
-  const shop = currentShop;
+  if (!shop) {
+    return (
+      <div className="bg-[#050505] text-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+        <div className="text-center space-y-4">
+          <h1 className="text-2xl font-black text-amber-400">존재하지 않는 제휴점입니다.</h1>
+          <p className="text-sm text-gray-400">올바른 경로로 접근해 주세요.</p>
+          <Link href="/" className="inline-block bg-amber-500 text-black font-bold px-6 py-2.5 rounded-xl">
+            메인으로 돌아가기
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#050505] text-gray-100 min-h-screen flex flex-col font-sans selection:bg-amber-500 selection:text-black pb-24">
