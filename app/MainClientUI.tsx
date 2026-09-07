@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 // 서울·경기·인천 전지역 데이터
@@ -98,7 +98,7 @@ const regionData: Record<string, { name: string; districts: Record<string, { nam
   }
 };
 
-const localShops = [
+const initialLocalShops = [
   {
     id: 1,
     name: "🔥 한국미녀홈타이",
@@ -133,10 +133,10 @@ const localShops = [
   },
   {
     id: 5,
-    name: "👑 20대그녀의온도홈타이",
+    name: "👑 한국골든테라피",
     desc: "선입금 없는 100% 후불제! 수도권 전지역 평균 25분 내 실시간 도착",
-    phone: "0507-1280-3292",
-    price: "60,000원부터~",
+    phone: "0507-1280-3360",
+    price: "110,000원부터~",
     image: "/shop5.jpg"
   }
 ];
@@ -167,6 +167,15 @@ export default function MainClientUI() {
   const [selectedRegion, setSelectedRegion] = useState("seoul");
   const [selectedDistrict, setSelectedDistrict] = useState("");
   const [selectedDong, setSelectedDong] = useState("");
+  
+  // 새로고침 시 샵 순서가 랜덤으로 섞이도록 상태 선언
+  const [shuffledShops, setShuffledShops] = useState(initialLocalShops);
+
+  useEffect(() => {
+    // 페이지 진입/새로고침 시 샵 배열을 무작위로 섞음 (Fisher-Yates Shuffle 알고리즘)
+    const shuffled = [...initialLocalShops].sort(() => Math.random() - 0.5);
+    setShuffledShops(shuffled);
+  }, []);
 
   const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedRegion(e.target.value);
@@ -187,10 +196,7 @@ export default function MainClientUI() {
     const districtObj = regionData[selectedRegion]?.districts[selectedDistrict];
     const districtName = districtObj ? districtObj.name : selectedDistrict;
     
-    // 별도의 [dong] 경로 생성 없이 항상 구/시 경로만 이동
     const baseUrl = `/${selectedRegion}/${encodeURIComponent(districtName)}`;
-    
-    // 선택된 동이 있다면 쿼리 파라미터로 전달 (필요 시 해당 구 페이지에서 텍스트로 표시 및 텍스트 검색에 활용 가능)
     const targetUrl = selectedDong 
       ? `${baseUrl}?dong=${encodeURIComponent(selectedDong)}` 
       : baseUrl;
@@ -261,7 +267,7 @@ export default function MainClientUI() {
           </div>
         </section>
 
-        {/* 메인 추천 제휴업체 5개 박스 카드리스트 */}
+        {/* 메인 추천 제휴업체 5개 박스 카드리스트 (새로고침 시 랜덤 섞임) */}
         <section className="space-y-6">
           <div className="text-center mb-6">
             <p className="text-xs text-amber-400 font-bold tracking-widest uppercase">BEST RECOMMENDED SHOPS</p>
@@ -271,7 +277,7 @@ export default function MainClientUI() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {localShops.map((lShop) => (
+            {shuffledShops.map((lShop) => (
               <div key={lShop.id} className="bg-[#121214] border border-amber-500/20 hover:border-amber-500/60 rounded-2xl p-4 flex gap-4 items-center shadow-md transition-all group relative">
                 
                 <Link href={`/shop/${lShop.id}`} className="absolute inset-0 z-10" aria-label={`${lShop.name} 상세페이지 보기`} />
