@@ -24,13 +24,9 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const locationKeyword = `${regionName} ${districtName} ${dongName}`.trim();
   const simpleLocation = dongName ? `${districtName} ${dongName}` : districtName;
 
-  // -------------------------------------------------------------
-  // 🎯 50가지 패턴 생성을 위한 알고리즘 연산
-  // -------------------------------------------------------------
   const charSum = (locationKeyword + dongName + districtName).split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-  const variantIndex = charSum % 50; // 0 ~ 49 고유 패턴 연산
+  const variantIndex = charSum % 50;
 
-  // 50가지 타이틀 패턴
   const titleVariants = [
     /* 0 */ `${locationKeyword} 출장마사지 추천 | 24시 빠른방문 힐링 케어 - 건마사랑`,
     /* 1 */ `[건마사랑] ${locationKeyword} 출장마사지 안내 · 100% 안심 후불제`,
@@ -84,7 +80,6 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
     /* 49 */ `${locationKeyword} 출장마사지 신속 예약 및 이용 후기 안내 - 건마사랑`
   ];
 
-  // 50가지 디스크립션 패턴
   const descriptionVariants = [
     /* 0 */ `${locationKeyword} 출장마사지 25분 내 빠른 방문! 선입금 요청 절대 없는 100% 안심 후불제. 타이, 아로마, 스웨디시 제휴업체 코스 안내.`,
     /* 1 */ `프라이빗한 피로 회복! ${locationKeyword} 인근 24시 출장마사지 및 홈케어 가이드. 베테랑 테라피스트의 맞춤 힐링 케어를 확인하세요.`,
@@ -179,34 +174,35 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
     ? `${regionName} ${districtName} (${dongName})` 
     : `${regionName} ${districtName}`;
 
+  // 💡 업체 이름 변경 반영
   const localShops = [
     {
       id: 1,
-      name: `🔥 ${fullTitle} 한국미녀 홈케어`,
+      name: `🔥 ${fullTitle} 한국미인홈케어`,
       desc: "지친 일상에 맞춤형 피로회복 케어! 베테랑 테라피스트의 정성 어린 프라이빗 릴렉싱",
-      phone: "0507-1280-3299",
+      phone: "0507-1280-3201",
       price: "90,000원부터~",
       image: "/shop1.jpg"
     },
     {
       id: 2,
-      name: `✨ ${fullTitle} 너무이쁜 홈테라피`,
+      name: `✨ ${fullTitle} 오늘밤테라피`,
       desc: "최고급 천연 아로마 오일을 활용한 품격 있는 전신 바디 이완 케어 서비스",
-      phone: "0507-1280-3190",
+      phone: "0507-1280-3199",
       price: "60,000원부터~",
       image: "/shop2.jpg"
     },
     {
       id: 3,
-      name: `💎 ${fullTitle} 예쁜걸 프리미엄`,
+      name: `💎 ${fullTitle} 주주테라피`,
       desc: "재방문율 높은 안심 케어! 철저한 위생 관리와 럭셔리 스웨디시 프로그램 제공",
-      phone: "0507-1280-3185",
+      phone: "0507-1280-3197",
       price: "60,000원부터~",
       image: "/shop3.jpg"
     },
     {
       id: 4,
-      name: `🌟 ${fullTitle} 20대 프리미엄 힐링`,
+      name: `🌟 ${fullTitle} 퀸즈홈테라피`,
       desc: "전문 힐러진의 맞춤형 VIP 체형 맞춤 피로회복 특화 프로그램 운영 중",
       phone: "0507-1280-3222",
       price: "60,000원부터~",
@@ -214,9 +210,9 @@ export default async function RegionalDetailPage({ params, searchParams }: PageP
     },
     {
       id: 5,
-      name: `👑 ${fullTitle} 그녀의온도 홈테라피`,
+      name: `👑 ${fullTitle} 한국골든테라피`,
       desc: "선입금 전혀 없는 100% 안심 후불제! 수도권 신속 방문 프라이빗 서비스",
-      phone: "0507-1280-3292",
+      phone: "0507-1280-3360",
       price: "60,000원부터~",
       image: "/shop5.jpg"
     }
