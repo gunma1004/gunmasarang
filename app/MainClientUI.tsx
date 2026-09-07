@@ -101,15 +101,15 @@ const regionData: Record<string, { name: string; districts: Record<string, { nam
 const initialLocalShops = [
   {
     id: 1,
-    name: "🔥 한국미녀홈타이",
+    name: "🔥 한국미인홈케어",
     desc: "서울·경기·인천 전지역 신속 방문! 정성 가득한 테라피 & 릴렉싱 프로그램",
-    phone: "0507-1280-3299",
+    phone: "0507-1280-3303",
     price: "90,000원부터~",
     image: "/shop1.jpg"
   },
   {
     id: 2,
-    name: "✨ 너무이쁜홈타이",
+    name: "✨ 오늘밤테라피",
     desc: "품격 있는 힐링을 선사하는 최고급 오일 프라이빗 방문 테라피 서비스",
     phone: "0507-1280-3190",
     price: "60,000원부터~",
@@ -117,17 +117,17 @@ const initialLocalShops = [
   },
   {
     id: 3,
-    name: "💎 예쁜걸홈타이",
+    name: "💎주주테라피",
     desc: "재방문율 1위! 칼도착 25분 보장, 철저한 위생 관리와 럭셔리 케어",
-    phone: "0507-1280-3185",
+    phone: "0507-1280-3193",
     price: "60,000원부터~",
     image: "/shop3.jpg"
   },
   {
     id: 4,
-    name: "🌟 20대프리미엄홈케어",
+    name: "🌟퀸즈홈테라피",
     desc: "전문 힐러들의 맞춤형 VIP 피로회복 특화 프로그램 진행 중",
-    phone: "0507-1280-3222",
+    phone: "0507-1280-3296",
     price: "60,000원부터~",
     image: "/shop4.jpg"
   },
